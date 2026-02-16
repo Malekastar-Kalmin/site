@@ -1,215 +1,208 @@
+
 <!DOCTYPE html>
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>K.M.A.İ.S. Studio | Software</title>
+<title>K.M.A.İ.S. Studio</title>
 
 <style>
-:root {
-    --bg: #000;
-    --text: #00ff88;
-    --accent: #00ff88;
-}
-
-body.light {
-    --bg: #ffffff;
-    --text: #111;
-    --accent: #ffd700;
-}
-
 body {
-    margin: 0;
-    font-family: Consolas, monospace;
-    background: var(--bg);
-    color: var(--text);
-    overflow-x: hidden;
+    margin:0;
+    font-family:Arial, sans-serif;
+    transition:0.4s;
+    background:black;
+    color:white;
+    overflow-x:hidden;
 }
 
-/* Matrix efekti */
-canvas {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: -1;
+/* Light Mode */
+body.light {
+    background:white;
+    color:black;
 }
 
 /* Header */
 header {
-    text-align: center;
-    padding: 30px;
-    font-size: 30px;
-    letter-spacing: 2px;
+    text-align:center;
+    padding:40px;
+    font-size:32px;
+    letter-spacing:4px;
 }
 
-/* Terminal efekti */
-.terminal {
-    width: 80%;
-    max-width: 700px;
-    margin: 30px auto;
-    padding: 20px;
-    border: 2px solid var(--accent);
-    border-radius: 15px;
+/* Toggle Button */
+.toggle {
+    position:fixed;
+    top:20px;
+    right:20px;
+    padding:10px 20px;
+    cursor:pointer;
+    border:none;
+    font-weight:bold;
+    transition:0.3s;
 }
 
-.cursor {
-    animation: blink 1s infinite;
+body:not(.light) .toggle {
+    background:lime;
+    color:black;
 }
 
-@keyframes blink {
-    50% { opacity: 0; }
+body.light .toggle {
+    background:yellow;
+    color:black;
 }
 
-/* Buton */
-.btn {
-    margin: 10px;
-    padding: 10px 20px;
-    border: 2px solid var(--accent);
-    background: transparent;
-    color: var(--text);
-    cursor: pointer;
-    border-radius: 8px;
-    transition: 0.3s;
-}
-
-.btn:hover {
-    background: var(--accent);
-    color: black;
-    box-shadow: 0 0 20px var(--accent);
-}
-
+/* Sections */
 section {
-    text-align: center;
-    padding: 50px 20px;
+    padding:50px;
+    text-align:center;
 }
 
+/* Card Style */
 .card {
-    margin: 25px auto;
-    padding: 20px;
-    max-width: 450px;
-    border: 2px solid var(--accent);
-    border-radius: 15px;
-    transition: 0.3s;
+    display:inline-block;
+    margin:30px;
+    padding:20px;
+    width:260px;
+    background:#111;
+    border:2px solid lime;
+    border-radius:20px;
+    transition:0.4s;
 }
 
+body.light .card {
+    background:white;
+    border:2px solid yellow;
+    box-shadow:0 0 10px yellow;
+}
+
+/* Studio Glow Hover */
 .card:hover {
-    box-shadow: 0 0 20px var(--accent);
+    transform:scale(1.05);
+    box-shadow:0 0 25px lime;
 }
 
+/* Images */
+.card img {
+    width:200px;
+    margin:15px 0;
+}
+
+/* Cinematic Button */
 .download-btn {
-    display: inline-block;
-    margin-top: 10px;
-    padding: 8px 18px;
-    background: var(--accent);
-    color: black;
-    text-decoration: none;
-    border-radius: 6px;
+    padding:10px 25px;
+    border:none;
+    cursor:pointer;
+    font-weight:bold;
+    letter-spacing:1px;
+    transition:0.4s;
 }
 
-.footer {
-    text-align: center;
-    padding: 30px;
-    opacity: 0.6;
+body:not(.light) .download-btn {
+    background:lime;
+    color:black;
+}
+
+body.light .download-btn {
+    background:yellow;
+    color:black;
+}
+
+.download-btn:hover {
+    transform:scale(1.1);
+    box-shadow:0 0 20px white;
+}
+
+/* Yakında placeholder */
+.coming {
+    opacity:0.5;
+    font-style:italic;
+    margin-top:20px;
+}
+
+/* Ambient Animation */
+@keyframes ambient {
+    0% { background-position:0 0; }
+    100% { background-position:1000px 0; }
+}
+
+body::before {
+    content:"";
+    position:fixed;
+    width:100%;
+    height:100%;
+    background:linear-gradient(90deg, transparent, rgba(0,255,0,0.05), transparent);
+    animation:ambient 20s linear infinite;
+    pointer-events:none;
 }
 </style>
 </head>
 
 <body>
 
-<canvas id="matrix"></canvas>
+<button class="toggle" onclick="toggleMode()">Mod Değiştir</button>
 
 <header>
-K.M.A.İ.S. Studio | Software
-<br>
-<button class="btn" onclick="toggleMode()">Mod</button>
-<button class="btn" onclick="toggleMusic()">🎵</button>
+K.M.A.İ.S. Studio
 </header>
 
-<div class="terminal">
-    <p>> Initializing K.M.A.İ.S. Software Environment...</p>
-    <p>> Loading modules...</p>
-    <p>> System Ready<span class="cursor">|</span></p>
-</div>
-
 <section>
-<h2>PNG Assets</h2>
+<h2>💻 Yazılım Projelerim</h2>
 
 <div class="card">
-    <h3>Asset 1</h3>
-    <a class="download-btn" href="indirilebilir/dosya1.png" download>İndir</a>
+<h3>Headphone</h3>
+<img src="2026_01_08_mullllalxi34-headphone-23777773.png">
+<br>
+<a href="2026_01_08_mullllalxi34-headphone-23777773.png" download>
+<button class="download-btn">İndir</button>
+</a>
+</div>
+
+<div class="card">
+<h3>Glitch</h3>
+<img src="2026_01_10_mullllalxi34-glitch-23782284.png">
+<br>
+<a href="2026_01_10_mullllalxi34-glitch-23782284.png" download>
+<button class="download-btn">İndir</button>
+</a>
+</div>
+
+<div class="card">
+<h3>Virus</h3>
+<img src="2026_01_12_mullllalxi34-virus-23787993.png">
+<br>
+<a href="2026_01_12_mullllalxi34-virus-23787993.png" download>
+<button class="download-btn">İndir</button>
+</a>
+</div>
+
+<div class="card">
+<h3>Fixed</h3>
+<img src="2026_01_20_mullllalxi34-fixed-23807472.png">
+<br>
+<a href="2026_01_20_mullllalxi34-fixed-23807472.png" download>
+<button class="download-btn">İndir</button>
+</a>
+</div>
+
+<div class="card">
+<h3>Yeni Proje</h3>
+<p class="coming">Yakında...</p>
+</div>
+
+<div class="card">
+<h3>Yeni Yazılım</h3>
+<p class="coming">Yakında...</p>
 </div>
 
 </section>
-
-<section>
-<h2>Yakında</h2>
-<div class="card">
-    <p>Yeni Yazılım Projesi – YAKINDA</p>
-</div>
-</section>
-
-<div class="footer">
-© 2026 K.M.A.İ.S. Studio
-</div>
-
-<audio id="bgMusic" loop>
-<source src="music/ambient.mp3" type="audio/mpeg">
-</audio>
 
 <script>
-// Dark / Light
-function toggleMode() {
+function toggleMode(){
     document.body.classList.toggle("light");
 }
-
-// Music
-function toggleMusic() {
-    const music = document.getElementById("bgMusic");
-    if (music.paused) {
-        music.volume = 0.2;
-        music.play();
-    } else {
-        music.pause();
-    }
-}
-
-// Matrix Effect
-const canvas = document.getElementById("matrix");
-const ctx = canvas.getContext("2d");
-
-canvas.height = window.innerHeight;
-canvas.width = window.innerWidth;
-
-const letters = "01";
-const fontSize = 14;
-const columns = canvas.width / fontSize;
-const drops = [];
-
-for (let x = 0; x < columns; x++)
-    drops[x] = 1;
-
-function draw() {
-    ctx.fillStyle = "rgba(0,0,0,0.05)";
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-    ctx.fillStyle = "#00ff88";
-    ctx.font = fontSize + "px monospace";
-
-    for (let i = 0; i < drops.length; i++) {
-        const text = letters[Math.floor(Math.random() * letters.length)];
-        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-
-        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975)
-            drops[i] = 0;
-
-        drops[i]++;
-    }
-}
-
-setInterval(draw, 33);
 </script>
 
 </body>
 </html>
-
 
