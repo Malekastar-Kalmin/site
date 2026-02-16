@@ -1,109 +1,215 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8">
-  <title>Uygulama İndirme Platformu</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>K.M.A.İ.S. Studio | Software</title>
 
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #0f0f0f;
-      color: #ffffff;
-    }
+<style>
+:root {
+    --bg: #000;
+    --text: #00ff88;
+    --accent: #00ff88;
+}
 
-    header {
-      background: #1a1a1a;
-      padding: 25px;
-      text-align: center;
-      border-bottom: 2px solid #00ff99;
-    }
+body.light {
+    --bg: #ffffff;
+    --text: #111;
+    --accent: #ffd700;
+}
 
-    header h1 {
-      margin: 0;
-      color: #00ff99;
-    }
+body {
+    margin: 0;
+    font-family: Consolas, monospace;
+    background: var(--bg);
+    color: var(--text);
+    overflow-x: hidden;
+}
 
-    header p {
-      margin-top: 8px;
-      color: #aaa;
-    }
+/* Matrix efekti */
+canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
 
-    .container {
-      padding: 20px;
-      max-width: 900px;
-      margin: auto;
-    }
+/* Header */
+header {
+    text-align: center;
+    padding: 30px;
+    font-size: 30px;
+    letter-spacing: 2px;
+}
 
-    .app {
-      background: #1e1e1e;
-      padding: 15px;
-      border-radius: 8px;
-      margin-bottom: 15px;
-      border: 1px solid #2a2a2a;
-    }
+/* Terminal efekti */
+.terminal {
+    width: 80%;
+    max-width: 700px;
+    margin: 30px auto;
+    padding: 20px;
+    border: 2px solid var(--accent);
+    border-radius: 15px;
+}
 
-    .app h2 {
-      margin: 0 0 5px 0;
-    }
+.cursor {
+    animation: blink 1s infinite;
+}
 
-    .app p {
-      margin: 0 0 10px 0;
-      color: #bbb;
-    }
+@keyframes blink {
+    50% { opacity: 0; }
+}
 
-    .download {
-      display: inline-block;
-      padding: 10px 15px;
-      background: #00ff99;
-      color: #000;
-      text-decoration: none;
-      font-weight: bold;
-      border-radius: 5px;
-    }
+/* Buton */
+.btn {
+    margin: 10px;
+    padding: 10px 20px;
+    border: 2px solid var(--accent);
+    background: transparent;
+    color: var(--text);
+    cursor: pointer;
+    border-radius: 8px;
+    transition: 0.3s;
+}
 
-    .download:hover {
-      background: #00cc77;
-    }
+.btn:hover {
+    background: var(--accent);
+    color: black;
+    box-shadow: 0 0 20px var(--accent);
+}
 
-    footer {
-      text-align: center;
-      padding: 15px;
-      color: #666;
-      font-size: 14px;
-    }
-  </style>
+section {
+    text-align: center;
+    padding: 50px 20px;
+}
+
+.card {
+    margin: 25px auto;
+    padding: 20px;
+    max-width: 450px;
+    border: 2px solid var(--accent);
+    border-radius: 15px;
+    transition: 0.3s;
+}
+
+.card:hover {
+    box-shadow: 0 0 20px var(--accent);
+}
+
+.download-btn {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 8px 18px;
+    background: var(--accent);
+    color: black;
+    text-decoration: none;
+    border-radius: 6px;
+}
+
+.footer {
+    text-align: center;
+    padding: 30px;
+    opacity: 0.6;
+}
+</style>
 </head>
 
 <body>
 
+<canvas id="matrix"></canvas>
+
 <header>
-  <h1>📦 Uygulama İndirme Platformu</h1>
-  <p>Ücretsiz ve güvenli uygulamalar</p>
+K.M.A.İ.S. Studio | Software
+<br>
+<button class="btn" onclick="toggleMode()">Mod</button>
+<button class="btn" onclick="toggleMusic()">🎵</button>
 </header>
 
-<div class="container">
-
-  <!-- UYGULAMA 1 -->
-  <div class="app">
-    <h2>Örnek Android Uygulama</h2>
-    <p>Android için ücretsiz araç.</p>
-    <a class="download" href="uygulama.apk">İndir (APK)</a>
-  </div>
-
-  <!-- UYGULAMA 2 -->
-  <div class="app">
-    <h2>Örnek Windows Programı</h2>
-    <p>Windows uyumlu masaüstü uygulaması.</p>
-    <a class="download" href="program.zip">İndir (ZIP)</a>
-  </div>
-
+<div class="terminal">
+    <p>> Initializing K.M.A.İ.S. Software Environment...</p>
+    <p>> Loading modules...</p>
+    <p>> System Ready<span class="cursor">|</span></p>
 </div>
 
-<footer>
-  © 2026 | Malekastar-Kalmin
-</footer>
+<section>
+<h2>PNG Assets</h2>
+
+<div class="card">
+    <h3>Asset 1</h3>
+    <a class="download-btn" href="indirilebilir/dosya1.png" download>İndir</a>
+</div>
+
+</section>
+
+<section>
+<h2>Yakında</h2>
+<div class="card">
+    <p>Yeni Yazılım Projesi – YAKINDA</p>
+</div>
+</section>
+
+<div class="footer">
+© 2026 K.M.A.İ.S. Studio
+</div>
+
+<audio id="bgMusic" loop>
+<source src="music/ambient.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+// Dark / Light
+function toggleMode() {
+    document.body.classList.toggle("light");
+}
+
+// Music
+function toggleMusic() {
+    const music = document.getElementById("bgMusic");
+    if (music.paused) {
+        music.volume = 0.2;
+        music.play();
+    } else {
+        music.pause();
+    }
+}
+
+// Matrix Effect
+const canvas = document.getElementById("matrix");
+const ctx = canvas.getContext("2d");
+
+canvas.height = window.innerHeight;
+canvas.width = window.innerWidth;
+
+const letters = "01";
+const fontSize = 14;
+const columns = canvas.width / fontSize;
+const drops = [];
+
+for (let x = 0; x < columns; x++)
+    drops[x] = 1;
+
+function draw() {
+    ctx.fillStyle = "rgba(0,0,0,0.05)";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    ctx.fillStyle = "#00ff88";
+    ctx.font = fontSize + "px monospace";
+
+    for (let i = 0; i < drops.length; i++) {
+        const text = letters[Math.floor(Math.random() * letters.length)];
+        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975)
+            drops[i] = 0;
+
+        drops[i]++;
+    }
+}
+
+setInterval(draw, 33);
+</script>
 
 </body>
 </html>
+
 
